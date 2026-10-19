@@ -1,5 +1,4 @@
-document.getElementById("audio")
-.addEventListener("change", (event) => {
+document.getElementById("audio").addEventListener("change", (event) => {
         const file = event.target.files[0];
 
         const reader = new FileReader(); 
@@ -39,23 +38,19 @@ function visualise(audioBuffer, audioContext) {
     const canvasContext = canvas.getContext("2d");
 
  
+    const barWidth = canvas.width / frequencyBufferLength 
 
-
-
-    const barWidth = canvas.width / frequencyBufferLength
-  
-}
 
 function draw() { 
     requestAnimationFrame(draw)
     
-    
     canvasContext.fillStyle = "#82b2e8";
-     canvasContext.fillRec(0, 0, canvas.width, canvas.height);
+     canvasContext.fillRect(0, 0, canvas.width, canvas.height);
         
     analyser.getByteFrequencyData(frequencyData);
     
     for(let i = 0; i < frequencyBufferLength; i++) {
+        canvasContext.fillStyle = "rgb(" + (frequencyData[i]) + ",118, 138)";
         canvasContext.fillRect(
             i * barWidth, 
             canvas.height - frequencyData[i], 
@@ -66,3 +61,4 @@ function draw() {
     }
 
         draw()
+}
