@@ -44,13 +44,16 @@ function visualise(audioBuffer, audioContext) {
 function draw() { 
     requestAnimationFrame(draw)
     
-    canvasContext.fillStyle = "#82b2e8";
-     canvasContext.fillRect(0, 0, canvas.width, canvas.height);
-        
+    const backgroundImage = new Image();
+backgroundImage.src = "images/celeste.jpg";
+
+canvasContext.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
     analyser.getByteFrequencyData(frequencyData);
+
+
     
     for(let i = 0; i < frequencyBufferLength; i++) {
-        canvasContext.fillStyle = "rgb(" + (frequencyData[i]) + ",118, 138)";
+        canvasContext.fillStyle = "rgb(" + (frequencyData[i]) + ", 146, 184)";
         canvasContext.fillRect(
             i * barWidth, 
             canvas.height - frequencyData[i], 
